@@ -4,6 +4,8 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 COPY . /app
 WORKDIR /app
+# RUN rm /app/pnpm-lock.yaml
+# RUN rm -rf /app/node_modules
 
 FROM base AS prod-deps
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
@@ -14,6 +16,6 @@ RUN pnpm run build
 
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build . /app/
+COPY --from=build /app /app
 EXPOSE 3000
-CMD [ "pnpm", "dlx", "nuxi@latest", "start" ]
+CMD [ "pnpm", "nuxi", "start" ]
