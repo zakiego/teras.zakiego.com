@@ -4,10 +4,11 @@ on:
     branches:
       - main
 
+      
 jobs:
   docker_publish:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -26,5 +27,5 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd Docker/nuxt-teras-zakiego-com-docker
-            sudo docker pull ghcr.io/zakiego/teras.zakiego.com:latest
-            sudo docker-compose up -d
+            docker pull ghcr.io/zakiego/teras.zakiego.com:latest
+            docker-compose up -d
