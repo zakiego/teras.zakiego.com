@@ -23,11 +23,9 @@ const { data, status } = await useAsyncData(
   },
 );
 
-// onMounted(async () => {
-//   if (!name.value) {
-//     // name.updateValue(createRandomName());
-//   }
-// });
+onMounted(async () => {
+  window.scrollTo(0, document.body.scrollHeight); // Scroll to bottom
+});
 
 socket.on("chat", (msg) => {
   console.log("New chat", msg);
@@ -42,40 +40,42 @@ useHead({
 
 <template>
   <div>
-    <UContainer class="max-w-lg">
-      <div
-        class="fixed top-0 w-full bg-white shadow-md max-w-lg rounded-md rounded-t-none"
-      >
-        <div class="p-4 flex justify-between">
-          <div class="font-bold text-lg">Chat</div>
-          <p>
-            {{ name.value }}
-          </p>
+    <UContainer class="max-w-lg px-0">
+      <div class="px-3">
+        <div
+          class="fixed top-0 w-full bg-white shadow-md max-w-lg rounded-md rounded-t-none"
+        >
+          <div class="p-4 flex justify-between">
+            <div class="font-bold text-lg">Chat</div>
+            <p>
+              {{ name.value }}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="mt-5">
-        <ul class="space-y-4 my-20">
-          <template v-for="item in data" :hidden="status === 'loading'">
-            <li v-if="item.name === name.value">
-              <MyMessage
-                :message="item.message"
-                :name="item.name"
-                :timestamp="item.timestamp"
-              />
-            </li>
-            <li v-else>
-              <TheirMessage
-                :message="item.message"
-                :name="item.name"
-                :timestamp="item.timestamp"
-              />
-            </li>
-          </template>
-        </ul>
-      </div>
+        <div class="mt-5" id="chat">
+          <ul class="space-y-4 my-20">
+            <template v-for="item in data" :hidden="status === 'loading'">
+              <li v-if="item.name === name.value">
+                <MyMessage
+                  :message="item.message"
+                  :name="item.name"
+                  :timestamp="item.timestamp"
+                />
+              </li>
+              <li v-else>
+                <TheirMessage
+                  :message="item.message"
+                  :name="item.name"
+                  :timestamp="item.timestamp"
+                />
+              </li>
+            </template>
+          </ul>
+        </div>
 
-      <InputMessage />
+        <InputMessage />
+      </div>
     </UContainer>
   </div>
 </template>
