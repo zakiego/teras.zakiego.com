@@ -18,4 +18,4 @@ FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/.output /app/.output
 EXPOSE 3000
-CMD [ "node", "./output/server/index.mjs"]
+CMD [ "node", "./.output/server/index.mjs"]
