@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  nuxt-app:
+    build: .
+    container_name: teras-zakiego-com
+    restart: always
+    ports:
+      - 30001:3000
