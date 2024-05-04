@@ -16,6 +16,6 @@ RUN pnpm run build
 
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app /app
+COPY --from=build /app/.nuxt /app/.nuxt
 EXPOSE 3000
 CMD [ "pnpm", "nuxi", "start" ]
