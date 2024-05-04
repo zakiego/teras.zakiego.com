@@ -17,3 +17,14 @@ jobs:
         with:
           image_name: ${{ github.repository }}  # it will be lowercased internally
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull and run docker-compose on remote server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd Docker/nuxt-teras-zakiego-com-docker
+            sudo docker pull ghcr.io/zakiego/teras.zakiego.com:latest
+            sudo docker-compose up -d
