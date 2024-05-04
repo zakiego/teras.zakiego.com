@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { socket, socketEmitters } from "./socket";
+import { socketEmitters } from "./socket";
 
 const message = ref("");
-const username = useUsernameStore();
+const name = useNameStore();
 
 function sendMessage() {
   socketEmitters.sendMessage({
     message: message.value,
-    username: username.value,
+    name: name.value,
   });
 
   message.value = "";
@@ -17,8 +17,8 @@ function sendMessage() {
 
 <template>
   <!-- floating in bottom, input message -->
-  <div class="fixed bottom-2 bg-white w-full p-4 max-w-md">
-    <div class="flex items-center justify-between">
+  <div class="fixed bottom-0 w-full max-w-lg bg-white">
+    <div class="flex items-center justify-between mb-2">
       <input
         v-model="message"
         @keyup.enter="sendMessage"

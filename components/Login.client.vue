@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useUsernameStore } from "~/stores/input";
+import { useNameStore } from "~/stores/input";
 
 const isOpen = ref(true);
 
-const username = useUsernameStore();
+const name = useNameStore();
 
-const isDisabled = computed(() => username.value.length < 3);
+const isDisabled = computed(() => name.value.length < 3);
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const isDisabled = computed(() => username.value.length < 3);
           <label for="name"> Nama </label>
         </div>
         <UInput
-          v-model="username.value"
+          v-model="name.value"
           id="name"
           placeholder="Masukkan namamu"
           class="mt-2"

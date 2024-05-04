@@ -4,12 +4,12 @@ export const socket = io();
 
 const socketSendMessage = ({
   message,
-  username,
-}: { message: string; username: string }) => {
+  name,
+}: { message: string; name: string }) => {
   socket.emit("chat", {
     message,
-    username,
-    timestamp: new Date().toISOString(),
+    name,
+    timestamp: new Date(),
   });
 };
 

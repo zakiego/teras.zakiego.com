@@ -6,14 +6,12 @@ export default defineNuxtConfig({
       websocket: true,
     },
   },
-  css: ["~/assets/css/main.css"],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
+  tailwindcss: {
+    cssPath: "~/assets/css/main.css",
+    exposeConfig: true,
+    viewer: true,
   },
-  modules: ["@nuxt/ui", "@pinia/nuxt"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "@nuxtjs/tailwindcss"],
   colorMode: {
     preference: "light",
   },
