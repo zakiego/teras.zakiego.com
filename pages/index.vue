@@ -7,6 +7,10 @@ import Login from "~/components/Login.client.vue";
 import MyMessage from "~/components/MyMessage.client.vue";
 import TheirMessage from "~/components/TheirMessage.client.vue";
 
+useHead({
+  title: "Teras",
+});
+
 const name = useNameStore();
 
 // const chat = ref();
@@ -31,10 +35,6 @@ socket.on("chat", (msg) => {
   console.log("New chat", msg);
 
   data.value?.push(msg);
-});
-
-useHead({
-  title: "Teras ",
 });
 </script>
 
